@@ -1,18 +1,21 @@
-<x-panel class="flex flex-col text-center">
-    <div class="self-start text-sm">Laracasts</div>
+@props(['job'])
 
-    <div class="py-8">
-        <h3 class="group-hover:text-blue-800 text-xl font-bold transition-colors duration-300">Video Producer</h3>
-        <p class="text-sm mt-4">Full Time - From $60,000</p>
+<x-panel class="flex gap-x-6">
+    <div>
+        <x-employer-logo />
     </div>
 
-    <div class="flex justify-between items-center mt-auto">
-        <div>
-            <x-tag size="small">Backend</x-tag>
-            <x-tag size="small">Frontend</x-tag>
-            <x-tag size="small">Manager</x-tag>
-        </div>
+    <div class="flex-1 flex flex-col">
+        <a href="#" class="self-start text-sm text-gray-400 transition-colors duration-300">{{ $job->employer->name }}</a>
 
-        <x-employer-logo :width="42" />
+        <h3 class="font-bold text-xl mt-3 group-hover:text-blue-800">{{ $job->title }}</h3>
+
+        <p class="text-sm text-gray-400 mt-auto">{{ $job->salary }}</p>
+    </div>
+
+    <div>
+        @foreach($job->tags as $tag)
+            <x-tag :$tag />
+        @endforeach
     </div>
 </x-panel>
